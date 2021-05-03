@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="@color/white"
+    tools:context=".ui.SettingActivity">
+    <Button
+        android:id="@+id/btn_show_purchase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show All Purchase"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:background="@drawable/btn_primary_cir"/>
+    <Button
+        android:id="@+id/btn_last_purchase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show Last Purchase"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/btn_primary_cir"/>
+    <Button
+        android:id="@+id/btn_change_pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change Password"
+        android:textColor="@color/white"
+        android:layout_marginTop="16dp"
+        android:textAllCaps="false"
+        android:background="@drawable/btn_primary_cir"/>
+    <Button
+        android:id="@+id/btn_clear_purchase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="clear all Purchase"
+        android:textColor="@color/white"
+        android:layout_marginTop="16dp"
+        android:textAllCaps="false"
+        android:background="@drawable/btn_primary_cir"/>
+    <Button
+        android:id="@+id/btn_add_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add New Item"
+        android:textColor="@color/white"
+        android:layout_marginTop="16dp"
+        android:textAllCaps="false"
+        android:background="@drawable/btn_primary_cir"/>
+</LinearLayout>
