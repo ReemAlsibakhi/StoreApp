@@ -58,6 +58,18 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.viewHolder> {
         holder.payType.setText(dataList.get(position).getPaymentType());
         Bitmap bitmapImage = BitmapFactory.decodeByteArray(dataList.get(position).getImage(), 0, dataList.get(position).getImage().length);
         holder.imgCat.setImageBitmap(bitmapImage);
+        holder.share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "Item: " +dataList.get(position).getName()+"\nDetail: "+dataList.get(position).getDetail()
+                       +"\nPrice: " +dataList.get(position).getPrice()+"\nPayment Type: "+ dataList.get(position).getPaymentType());
+                sendIntent.setType("text/plain");
+                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                context.startActivity(shareIntent);
+            }
+        });
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +94,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.viewHolder> {
     }
 
     public static class viewHolder extends RecyclerView.ViewHolder {
-        TextView catName, payType, price;
+        TextView catName, payType, price,share;
         ImageView imgCat;
 
         public viewHolder(@NonNull View itemView) {
@@ -91,6 +103,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.viewHolder> {
             payType = itemView.findViewById(R.id.tv_payType);
             price = itemView.findViewById(R.id.tv_price);
             imgCat=itemView.findViewById(R.id.img_cat);
+            share=itemView.findViewById(R.id.tv_share);
         }
     }
 }
