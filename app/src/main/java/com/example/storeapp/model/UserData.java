@@ -44,12 +44,12 @@ public class UserData {
                     + ")";
 
     public UserData( String userName, String fullName, String email,
-                     String password, String birthDate, String country, String gender,
+                     String birthDate, String country, String gender,
                      byte[] img, String mobile, String address, int isAdmin) {
         this.userName = userName;
         this.fullName = fullName;
         this.email = email;
-        this.password = password;
+     //   this.password = password;
         this.birthDate = birthDate;
         this.country = country;
         this.gender = gender;
@@ -57,6 +57,10 @@ public class UserData {
         this.mobile = mobile;
         this.address = address;
         this.isAdmin = isAdmin;
+    }
+
+    public UserData(String password) {
+        this.password = password;
     }
 
     public int getId() {

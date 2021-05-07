@@ -18,6 +18,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/purchase_item" />
+        tools:listitem="@layout/purchase_item"
+       app:reverseLayout="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

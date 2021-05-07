@@ -32,18 +32,6 @@ public class AllPurchaseActivity extends AppCompatActivity {
     private void buildRecy() {
         adapter = new PurchaseAdapter(purchaseList, getApplicationContext());
         rvCategory.setAdapter(adapter);
-//        adapter.setOnItemClickListener(new ItemAdapter.OnItemClickListener() {
-//            @Override
-//            public void onClicked(Item category) {
-//                Intent i = new Intent(HomeActivity.this, DetailActivity.class);
-//                i.putExtra("name",category.getName());
-//                i.putExtra("price",category.getPrice());
-//                i.putExtra("detail",category.getDetail());
-//                i.putExtra("payment",category.getPaymentType());
-//                startActivity(i);
-//
-//            }
-//        });
     }
 
     private void initView() {

@@ -36,7 +36,7 @@ import java.nio.ByteBuffer;
 
 public class RegisterActivity extends AppCompatActivity {
     private static final int RESULT_LOAD_IMG =1 ;
-    private Button btnSave;
+    private Button btnSave,btnLogin;
     EditText mFullName, mUserName, mEmail, mPass, mAddress, mRePass, mPhone;
     TextView mBirthDate;
     Spinner sp_country;
@@ -147,7 +147,8 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
         Boolean isAdd = db.addUser(byteArray, name, username, email, password, country, phone, birth_date, address, gender, isAdmin);
-        new AppSharedPreferences(RegisterActivity.this).setUserData(new UserData(username, name, email, password, birth_date, country, gender, byteArray, phone, address, isAdmin));
+        new AppSharedPreferences(RegisterActivity.this).setUserData(new UserData(username, name, email, birth_date, country, gender, byteArray, phone, address, isAdmin));
+        new AppSharedPreferences(RegisterActivity.this).setPassword(password);
         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
         Log.e(TAG, "addUser into DB: " + isAdd);
     }
@@ -223,6 +224,7 @@ public class RegisterActivity extends AppCompatActivity {
         rb_male = findViewById(R.id.male);
         sp_country = findViewById(R.id.sp_country);
         btnSave = findViewById(R.id.btn_save);
+//        btnLogin = findViewById(R.id.btn_login);
         imgDatePicker = findViewById(R.id.date_picker);
         pickImage=findViewById(R.id.pick_img);
         imgProfile=findViewById(R.id.img_profile);

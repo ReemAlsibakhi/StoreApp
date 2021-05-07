@@ -33,6 +33,14 @@ public class Item implements Parcelable {
 
     }
 
+    public Item(int catId, byte[] image, String name, String price, String detail, String paymentType) {
+        this.catId = catId;
+        this.image = image;
+        this.name = name;
+        this.price = price;
+        this.detail = detail;
+        this.paymentType = paymentType;
+    }
 
     protected Item(Parcel in) {
         catId = in.readInt();

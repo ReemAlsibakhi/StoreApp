@@ -32,11 +32,11 @@
             android:textColor="@color/blackLight"
             android:textSize="12sp" />
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
-            android:src="@android:drawable/ic_menu_report_image"/>
+            android:src="@drawable/shopping_online"/>
 
 
         <EditText

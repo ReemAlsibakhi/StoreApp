@@ -21,13 +21,15 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mUserName, mPassword;
     private CheckBox cb_remember;
     private UserData userData;
+    private String pass;
     private static final String TAG = "LoginActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        userData = new AppSharedPreferences(LoginActivity.this).getUser();
+            userData = new AppSharedPreferences(LoginActivity.this).getUser();
+            pass=new AppSharedPreferences(LoginActivity.this).getPass();
         initView();
 
     }
@@ -42,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (userData != null) {
             mUserName.setText(userData.getUserName());
-            mPassword.setText(userData.getPassword());
+            mPassword.setText(pass);
         }
 
 
@@ -67,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
     private void loginUser() {
         String userName = mUserName.getText().toString();
         String password = mPassword.getText().toString();
-        if (userName.equals(userData.getUserName()) && password.equals(userData.getPassword())) {
+        if (userName.equals(userData.getUserName()) && password.equals(pass)) {
             if (cb_remember.isChecked())
                 new AppSharedPreferences(LoginActivity.this).setLogin(true);
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);

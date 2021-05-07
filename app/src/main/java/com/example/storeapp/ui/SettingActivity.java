@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import com.example.storeapp.R;
 import com.example.storeapp.db.DataBaseHelper;
+import com.example.storeapp.model.Purchase;
+import com.example.storeapp.ui.auth.ResetPasswordActivity;
 import com.example.storeapp.utilis.AppSharedPreferences;
 
 public class SettingActivity extends AppCompatActivity {
@@ -53,6 +55,12 @@ public class SettingActivity extends AppCompatActivity {
                 startActivity(new Intent(SettingActivity.this, AllPurchaseActivity.class));
             }
         });
+        changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SettingActivity.this, ResetPasswordActivity.class));
+            }
+        });
         clearPurchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +69,18 @@ public class SettingActivity extends AppCompatActivity {
                     Toast.makeText(SettingActivity.this, "Deleted Success", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(SettingActivity.this, "Deleted Failed, There are no Purchases", Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
+        showLastPurchase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (db.getAllPurchase().size() > 0) {
+                    Purchase purchase = db.getAllPurchase().get(db.getAllPurchase().size() - 1);
+                    Toast.makeText(SettingActivity.this, purchase.getItem_name() + " , " + purchase.getDate(), Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(SettingActivity.this, "Purchase is Empty", Toast.LENGTH_LONG).show();
 
                 }
             }

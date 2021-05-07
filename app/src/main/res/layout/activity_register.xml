@@ -276,6 +276,22 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:layout_marginTop="16dp"/>
+<!--        <Button-->
+<!--            android:id="@+id/btn_login"-->
+<!--            style="?borderlessButtonStyle"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="bottom"-->
+<!--            android:background="@drawable/btn_primary_border_cir"-->
+<!--            android:fontFamily="@font/roboto_medium"-->
+<!--            android:gravity="center|center_vertical"-->
+<!--            android:paddingStart="20dp"-->
+<!--            android:paddingEnd="20dp"-->
+<!--            android:text="@string/login"-->
+<!--            android:textColor="@color/colorPrimary"-->
+<!--            android:textSize="15sp"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:layout_marginTop="16dp"/>-->
     </LinearLayout>
 
 </ScrollView>

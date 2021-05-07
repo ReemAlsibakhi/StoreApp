@@ -1,8 +1,6 @@
 package com.example.storeapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,15 +9,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 import com.example.storeapp.R;
 import com.example.storeapp.db.DataBaseHelper;
-import com.example.storeapp.ui.auth.RegisterActivity;
-
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -84,22 +79,24 @@ public class AddItemActivity extends AppCompatActivity {
             paymentType = rb_installment.getText().toString();
         }
 
-        if (!validForm(imageUri.toString(), name, price, description, paymentType)) {
-            return;
+
+        if (byteArray != null  && byteArray.length > 0){
+            if (validForm(byteArray, name, price, description, paymentType)) {
+                Boolean isAdd= db.addItem(byteArray,name,price,description,paymentType);
+                Log.e(TAG, "addItem into DB: " + isAdd);
+                Toast.makeText(AddItemActivity.this,"Added Success",Toast.LENGTH_LONG).show();
+                finish();
+            }
+        }else {
+            Toast.makeText(AddItemActivity.this, "Please Select Photo", Toast.LENGTH_LONG).show();
         }
-        Boolean isAdd= db.addItem(byteArray,name,price,description,paymentType);
-        Log.e(TAG, "addItem into DB: " + isAdd);
-        Toast.makeText(AddItemActivity.this,"Added Success",Toast.LENGTH_LONG).show();
-        finish();
+
 
     }
 
-    private boolean validForm(String image, String name, String price, String description, String paymentType) {
+    private boolean validForm(byte[] image, String name, String price, String description, String paymentType) {
         boolean valid = true;
-        if (image.isEmpty()) {
-            Toast.makeText(AddItemActivity.this, "Please Select Photo", Toast.LENGTH_LONG).show();
-            valid = false;
-        } if (name.isEmpty()) {
+        if (name.isEmpty()) {
             mItemName.setError("name is required");
             mItemName.requestFocus();
             valid = false;

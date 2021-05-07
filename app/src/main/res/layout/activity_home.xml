@@ -8,32 +8,66 @@
     android:background="@color/white"
     android:padding="16dp"
     tools:context=".ui.HomeActivity">
-
-    <EditText
-        android:id="@+id/editText2"
+    <LinearLayout
+        android:id="@+id/la_linear"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="@drawable/shape_edittext"
-        android:drawableStart="@android:drawable/ic_menu_search"
-        android:hint="Search"
-        android:padding="5dp"
-        android:maxLines="1"
-        android:textColor="@color/black"
-        android:textColorHint="@color/blackLight"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="top">
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:layout_height="?actionBarSize"
+            android:background="@drawable/shape_edittext"
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:hint="@string/search"
+            android:padding="5dp"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blackLight"
+          />
+        <RadioGroup
+            android:id="@+id/radio"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="0.3">
+            <RadioButton
+                android:id="@+id/installment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="In installment"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:buttonTint="@color/blackLight"/>
+            <RadioButton
+                android:id="@+id/cash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cash"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:buttonTint="@color/blackLight"/>
+        </RadioGroup>
+
+    </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recy_category"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
+        app:reverseLayout="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/la_linear"
         tools:listitem="@layout/category_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

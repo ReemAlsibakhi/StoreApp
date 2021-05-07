@@ -49,4 +49,13 @@ public class AppSharedPreferences {
         UserData obj = gson.fromJson(json, UserData.class);
         return obj;
     }
+    public String getPass() {
+        return preferences.getString("pass", "p");
+    }
+
+    public void setPassword(String password) {
+        editor.putString("pass", password);
+        Log.e(TAG, "password: " + password);
+        editor.commit();
+    }
 }

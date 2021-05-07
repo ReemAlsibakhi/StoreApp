@@ -1,6 +1,7 @@
 package com.example.storeapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -13,6 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.storeapp.R;
 import com.example.storeapp.model.Item;
+import com.example.storeapp.ui.DetailActivity;
+import com.example.storeapp.ui.HomeActivity;
+
+import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.viewHolder> {
@@ -21,8 +27,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.viewHolder> {
     private static final String TAG = "CategoryAdapter";
     private OnItemClickListener mListener;
 
+    public void filterList(ArrayList<Item> filteredList) {
+        dataList = filteredList;
+        notifyDataSetChanged();
+    }
+
     public interface OnItemClickListener {
-        void onClicked(Item category);
+        void onClicked(int id);
     }
 
     public void setOnItemClickListener(OnItemClickListener mListener) {
@@ -48,12 +59,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.viewHolder> {
         Bitmap bitmapImage = BitmapFactory.decodeByteArray(dataList.get(position).getImage(), 0, dataList.get(position).getImage().length);
         holder.imgCat.setImageBitmap(bitmapImage);
 
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.e(TAG, "onClick: " + dataList.get(position).getName());
                 if (mListener != null) {
-                    mListener.onClicked(dataList.get(position));
+                    mListener.onClicked(dataList.get(position).getCatId());
                 }
             }
         });

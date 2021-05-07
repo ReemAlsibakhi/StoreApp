@@ -94,7 +94,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public List<Item> getAllCategory() {
         List<Item> items = new ArrayList<>();
 
-        String selectQuery = "SELECT  * FROM " + Item.TABLE_NAME + " ORDER BY " + Item.COL_ID + " DESC";
+        String selectQuery = "SELECT  * FROM " + Item.TABLE_NAME + " ORDER BY " + Item.COL_ID + " ASC";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         // looping through all rows and adding to list
@@ -107,7 +107,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 category.setPrice(cursor.getString(cursor.getColumnIndex(Item.COL_PRICE)));
                 category.setDetail(cursor.getString(cursor.getColumnIndex(Item.COL_DETAIL)));
                 category.setPaymentType(cursor.getString(cursor.getColumnIndex(Item.COL_PAYMENT_TYPE)));
-//                note.setTimestamp(cursor.getString(cursor.getColumnIndex(Note.COLUMN_TIMESTAMP)));
                 items.add(category);
             } while (cursor.moveToNext());
         }
@@ -116,7 +115,27 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         // return notes list
         return items;
     }
+    public Item getItem(long id) {
+        // get readable database as we are not inserting anything
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(Item.TABLE_NAME,
+                new String[]{Item.COL_ID, Item.COL_IMG, Item.COL_NAME,Item.COL_PRICE,Item.COL_DETAIL,Item.COL_PAYMENT_TYPE},
+                Item.COL_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
 
+        if (cursor != null)
+            cursor.moveToFirst();
+        Item item = new Item(
+                cursor.getInt(cursor.getColumnIndex(Item.COL_ID)),
+                cursor.getBlob(cursor.getColumnIndex(Item.COL_IMG)),
+                cursor.getString(cursor.getColumnIndex(Item.COL_NAME)),
+                cursor.getString(cursor.getColumnIndex(Item.COL_PRICE)),
+                cursor.getString(cursor.getColumnIndex(Item.COL_DETAIL)),
+                cursor.getString(cursor.getColumnIndex(Item.COL_PAYMENT_TYPE)));
+        // close the db connection
+        cursor.close();
+        return item;
+    }
     public Boolean addPurchase(int item_id, int user_id, String userName, String itemName, int amount, String date, int totalPrice) {
         // get writable database as we want to write data
         SQLiteDatabase db = this.getWritableDatabase();
@@ -137,7 +156,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public List<Purchase> getAllPurchase() {
         List<Purchase> list = new ArrayList<>();
 
-        String selectQuery = "SELECT  * FROM " + Purchase.TABLE_NAME + " ORDER BY " + Purchase.COL_ID + " DESC";
+        String selectQuery = "SELECT  * FROM " + Purchase.TABLE_NAME + " ORDER BY " + Purchase.COL_ID + " ASC";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         // looping through all rows and adding to list
